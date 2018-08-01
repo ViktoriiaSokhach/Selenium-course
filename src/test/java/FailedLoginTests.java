@@ -40,8 +40,8 @@ public class FailedLoginTests {
         topMenuPage.clickOnSignInLink();
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoUserNameField();
-        loginPage.typeIntoPasswordField();
+        loginPage.typeIntoUserNameField("NotExistingLogin");
+        loginPage.typeIntoPasswordField("NotProperPassword");
         loginPage.clickOnLoginButton();
         String warningMessage = loginPage.getWarningMessage();
 
