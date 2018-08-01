@@ -1,6 +1,9 @@
-import PageObjects.LandingPage;
-import PageObjects.LoginPage;
-import PageObjects.TopMenuPage;
+package tests;
+
+import page.objects.FooterPage;
+import page.objects.LandingPage;
+import page.objects.LoginPage;
+import page.objects.TopMenuPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -9,29 +12,24 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class FailedLoginTests {
+public class PositiveLoginTests {
 
     private WebDriver driver;
 
     @BeforeMethod
     public void beforeTest() {
-        //Ustawienie ścieżki do WebDrivera Chrome
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
 
-        //Inicliazjacja ChromeDriver
         driver = new ChromeDriver();
-
-        //Ustawienie Implicit Wait na 10 sekund
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        //Przejśćie do strony sklepu
         driver.navigate().to("http://przyklady.javastart.pl/jpetstore/");
     }
 
     @Test
-    public void asUserTryToLogInWithIncorrectLoginAndPassword() {
+    public void asUserLoginUsingValidLoginAndPassword() {
 
         LandingPage landingPage = new LandingPage(driver);
         landingPage.clickOnEnterStoreLink();
@@ -40,22 +38,17 @@ public class FailedLoginTests {
         topMenuPage.clickOnSignInLink();
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoUserNameField("NotExistingLogin");
-        loginPage.typeIntoPasswordField("NotProperPassword");
+        loginPage.typeIntoUserNameField("j2ee");
+        loginPage.typeIntoPasswordField("j2ee");
         loginPage.clickOnLoginButton();
-        String warningMessage = loginPage.getWarningMessage();
+        FooterPage footerPage = new FooterPage(driver);
 
-        assertEquals(warningMessage, "Invalid username or password. Signon failed.");
+        assertTrue(footerPage.isBannerAfterLoginDisplayed());
     }
 
     @AfterMethod
     public void afterTest() {
-
-        //Zamknięcie okna przeglądarki
         driver.close();
-
-        //Zabicie procesu WebDrivera
         driver.quit();
     }
-
 }
