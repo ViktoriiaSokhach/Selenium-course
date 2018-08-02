@@ -1,10 +1,10 @@
 package page.objects;
 
 import driver.manager.DriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import waits.WaitForElement;
 
 public class LoginPage {
 
@@ -20,18 +20,19 @@ public class LoginPage {
     @FindBy(css = "#Content ul[class='messages'] li")
     private WebElement messageLabel;
 
-    private WebDriver driver;
+    // When I created DriverManager class I had to delete this line:
+    // private WebDriver driver
 
     public LoginPage() {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    // Adding parameter (username) to make the method more generic and maintainable (applicable for many tests)
     public void typeIntoUserNameField(String username){
+        WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
         usernameField.sendKeys(username);
     }
-    // Adding parameter (password) to make the method more generic and maintainable (applicable for many tests)
+
     public void typeIntoPasswordField(String password){
         passwordField.clear();
         passwordField.sendKeys(password);
@@ -41,6 +42,7 @@ public class LoginPage {
     }
 
     public String getWarningMessage() {
+        WaitForElement.waitUntilElementIsVisible(messageLabel);
         String warningText = messageLabel.getText();
         return warningText;
     }
