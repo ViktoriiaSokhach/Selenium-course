@@ -1,7 +1,7 @@
 package tests;
 
+import driver.manager.DriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -9,23 +9,20 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    // Note: field 'driver' changes from private to public - it's necessary requirement to make possible for test classes to use it
-    public WebDriver driver;
+    // Note: field 'driver' changes from public to protected
+    protected WebDriver driver;
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
-
-        driver = new ChromeDriver();
+        driver = DriverManager.getWebDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+        //adding new action for a browser
+        driver.manage().window().maximize();
         driver.navigate().to("http://przyklady.javastart.pl/jpetstore/");
     }
 
     @AfterMethod
     public void afterTest() {
-        driver.close();
-        driver.quit();
+        DriverManager.disposeDriver();
     }
-
 }
