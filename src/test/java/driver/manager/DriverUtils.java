@@ -1,7 +1,5 @@
 package driver.manager;
 
-import java.util.concurrent.TimeUnit;
-
 public class DriverUtils {
 
     public static void setInitialConfiguration(){
