@@ -48,6 +48,13 @@ public class LoginPage {
         return new FooterPage();
     }
 
+    public boolean isUsernameFieldDisplayed() {
+        WaitForElement.waitUntilElementIsVisible(usernameField);
+        boolean isDisplayed = usernameField.isDisplayed();
+        logger.info("Sign On Link is Displayed: {}", isDisplayed);
+        return isDisplayed;
+    }
+
     public String getWarningMessage() {
         WaitForElement.waitUntilElementIsVisible(messageLabel);
         String warningText = messageLabel.getText();

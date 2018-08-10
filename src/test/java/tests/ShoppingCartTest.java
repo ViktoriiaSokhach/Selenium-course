@@ -1,6 +1,9 @@
 package tests;
 
+import static navigation.ApplicationURLs.TOP_MENU_PAGE_URL;
 import static org.testng.Assert.assertEquals;
+
+import driver.manager.DriverUtils;
 import org.testng.annotations.Test;
 import page.objects.*;
 
@@ -8,10 +11,10 @@ public class ShoppingCartTest extends TestBase {
 
     @Test
     public void asNotLoggedInUserIShallNotProceedToCheckout() {
+        DriverUtils.navigateToPage(TOP_MENU_PAGE_URL);
 
-        LandingPage landingPage = new LandingPage();
-        String warningMessage = landingPage
-                .clickOnEnterStoreLink()
+        TopMenuPage topMenuPage = new TopMenuPage();
+        String warningMessage = topMenuPage
                 .clickOnFishImageButton()
                 .clickOnAngelfishId()
                 .clickOnAddToCartSmallAngelfish()

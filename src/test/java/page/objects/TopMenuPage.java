@@ -29,6 +29,13 @@ public class TopMenuPage {
         return new LoginPage();
     }
 
+    public boolean isSignOnLinkDisplayed() {
+        WaitForElement.waitUntilElementIsVisible(signOnLink);
+        boolean isDisplayed = signOnLink.isDisplayed();
+        logger.info("Sign On Link is Displayed: {}", isDisplayed);
+        return isDisplayed;
+    }
+
     public FishListPage clickOnFishImageButton() {
         WaitForElement.waitUntilElementIsClickable(fishImageButton);
         fishImageButton.click();
