@@ -22,9 +22,10 @@ public class AngelfishListPage {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    public void clickOnAddToCartSmallAngelfish() {
+    public ShoppingCartPage clickOnAddToCartSmallAngelfish() {
         WaitForElement.waitUntilElementIsClickable(smallAngelfishAddToCartButton);
         smallAngelfishAddToCartButton.click();
         logger.info("Clicked On Small Angelfish Add To Cart Button");
+        return new ShoppingCartPage();
     }
 }
