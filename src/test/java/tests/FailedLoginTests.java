@@ -1,9 +1,7 @@
 package tests;
 
 import driver.manager.DriverUtils;
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import page.objects.LoginPage;
 
@@ -12,6 +10,9 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class FailedLoginTests extends TestBase {
 
+
+    @Issue("DEFECT-1")
+    @TmsLink("ID-2")
     @Severity(SeverityLevel.CRITICAL)
     @Test
     @Description("The goal of this test is to log in using not proper username and password" +

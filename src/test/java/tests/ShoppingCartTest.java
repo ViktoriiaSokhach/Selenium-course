@@ -7,11 +7,13 @@ import driver.manager.DriverUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 import page.objects.*;
 
 public class ShoppingCartTest extends TestBase {
 
+    @TmsLink("ID-5")
     @Severity(SeverityLevel.CRITICAL)
     @Test
     @Description("The goal of this test is to make sure that not logged in user" +
