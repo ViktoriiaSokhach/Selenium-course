@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,7 @@ public class TopMenuPage {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
+    @Step("Click on Sign on Link")
     public LoginPage clickOnSignInLink() {
         WaitForElement.waitUntilElementIsClickable(signOnLink);
         signOnLink.click();
@@ -29,6 +31,7 @@ public class TopMenuPage {
         return new LoginPage();
     }
 
+    @Step("Getting is Sign On Link is displayed")
     public boolean isSignOnLinkDisplayed() {
         WaitForElement.waitUntilElementIsVisible(signOnLink);
         boolean isDisplayed = signOnLink.isDisplayed();
@@ -36,6 +39,7 @@ public class TopMenuPage {
         return isDisplayed;
     }
 
+    @Step("Click on Fish Image Button")
     public FishListPage clickOnFishImageButton() {
         WaitForElement.waitUntilElementIsClickable(fishImageButton);
         fishImageButton.click();

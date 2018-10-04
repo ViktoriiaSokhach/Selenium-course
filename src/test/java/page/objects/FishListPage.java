@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ public class FishListPage {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
+    @Step("Click on Angelfish link")
     public AngelfishListPage clickOnAngelfishId() {
         WaitForElement.waitUntilElementIsClickable(angelfishIdLink);
         angelfishIdLink.click();

@@ -1,6 +1,9 @@
 package tests;
 
 import driver.manager.DriverUtils;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 import page.objects.TopMenuPage;
 
@@ -9,7 +12,9 @@ import static org.testng.Assert.assertTrue;
 
 public class TopMenuLoginPageNavigationTests extends TestBase {
 
+    @Severity(SeverityLevel.BLOCKER)
     @Test
+    @Description("The goal of this test is to navigate from TopMenuPage to LoginPage")
     public void asUserNavigateFromTopMenuToLoginPage(){
         DriverUtils.navigateToPage(TOP_MENU_PAGE_URL);
 

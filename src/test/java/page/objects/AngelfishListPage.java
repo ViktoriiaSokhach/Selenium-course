@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,7 @@ public class AngelfishListPage {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
+    @Step("Click on Small Angelfish Add To Cart Button")
     public ShoppingCartPage clickOnAddToCartSmallAngelfish() {
         WaitForElement.waitUntilElementIsClickable(smallAngelfishAddToCartButton);
         smallAngelfishAddToCartButton.click();
