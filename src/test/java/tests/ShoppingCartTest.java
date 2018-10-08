@@ -22,12 +22,12 @@ public class ShoppingCartTest extends TestBase {
         DriverUtils.navigateToPage(TOP_MENU_PAGE_URL);
 
         TopMenuPage topMenuPage = new TopMenuPage();
-        String warningMessage = topMenuPage
+        LoginPage loginPage = topMenuPage
                 .clickOnFishImageButton()
                 .clickOnAngelfishId()
                 .clickOnAddToCartSmallAngelfish()
-                .clickOnProceedToCheckout()
-                .getWarningMessage();
-        assertEquals(warningMessage, "You must sign on before attempting to check out. Please sign on and try checking out again.");
+                .clickOnProceedToCheckout();
+        loginPage
+                .assertThatWarningIsDisplayed("You must sign on before attempting to check out. Please sign on and try checking out again.");
     }
 }

@@ -22,10 +22,8 @@ public class LandingTopMenuPageNavigationTests extends TestBase{
         DriverUtils.navigateToPage(APPLICATION_URL);
 
         LandingPage landingPage = new LandingPage();
-        boolean isSignOnLinkDisplayed = landingPage
+        landingPage
                 .clickOnEnterStoreLink()
-                .isSignOnLinkDisplayed();
-
-        assertTrue(isSignOnLinkDisplayed);
+                .assertThatSignOnLinkIsDisplayed();
     }
 }

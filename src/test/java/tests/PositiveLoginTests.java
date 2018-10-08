@@ -6,15 +6,13 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
-import page.objects.*;
+import page.objects.LoginPage;
 
 import static navigation.ApplicationURLs.LOGIN_PAGE_URL;
-import static org.testng.Assert.assertTrue;
 
 public class PositiveLoginTests extends TestBase {
 
-
-    @TmsLink("ID-1")
+    @TmsLink("ID-2")
     @Severity(SeverityLevel.BLOCKER)
     @Test
     @Description("The goal of this test is to log in using proper username and password" +
@@ -23,11 +21,11 @@ public class PositiveLoginTests extends TestBase {
         DriverUtils.navigateToPage(LOGIN_PAGE_URL);
 
         LoginPage loginPage = new LoginPage();
-        boolean isBannerAfterLoginDisplayed = loginPage
+        loginPage
                 .typeIntoUserNameField("j2ee")
                 .typeIntoPasswordField("j2ee")
                 .clickOnLoginButton()
-                .isBannerAfterLoginDisplayed();
-        assertTrue(isBannerAfterLoginDisplayed);
+                .assertThatDogBannerIsDisplayed();
     }
+
 }

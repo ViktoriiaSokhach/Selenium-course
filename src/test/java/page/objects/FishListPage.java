@@ -11,7 +11,7 @@ import waits.WaitForElement;
 
 public class FishListPage {
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(FishListPage.class);
 
     @FindBy(css = "tr:nth-child(2) a")
     private WebElement angelfishIdLink;

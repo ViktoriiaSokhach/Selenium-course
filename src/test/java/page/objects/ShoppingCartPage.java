@@ -11,7 +11,7 @@ import waits.WaitForElement;
 
 public class ShoppingCartPage {
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(ShoppingCartPage.class);
 
     @FindBy(css = "a[href$='newOrderForm=']")
     private WebElement proceedToCheckoutButton;

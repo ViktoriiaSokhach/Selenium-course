@@ -9,9 +9,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
+import static generic.assertions.AssertWebElement.assertThat;
+
 public class TopMenuPage {
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(TopMenuPage.class);
 
     @FindBy(css = "#MenuContent a[href*='signonForm']")
     private WebElement signOnLink;
@@ -31,12 +33,12 @@ public class TopMenuPage {
         return new LoginPage();
     }
 
-    @Step("Getting is Sign On Link is displayed")
-    public boolean isSignOnLinkDisplayed() {
+    @Step("Assert that Sign On Link is displayed")
+    public TopMenuPage assertThatSignOnLinkIsDisplayed() {
+        logger.info("Checking if Sign On Link is Displayed");
         WaitForElement.waitUntilElementIsVisible(signOnLink);
-        boolean isDisplayed = signOnLink.isDisplayed();
-        logger.info("Sign On Link is Displayed: {}", isDisplayed);
-        return isDisplayed;
+        assertThat(signOnLink).isDisplayed();
+        return this;
     }
 
     @Step("Click on Fish Image Button")

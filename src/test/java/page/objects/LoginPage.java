@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import generic.assertions.AssertWebElement;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,9 +10,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
+import static generic.assertions.AssertWebElement.assertThat;
+
 public class LoginPage {
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(LoginPage.class);
 
     @FindBy(name = "username")
     private WebElement usernameField;
@@ -30,7 +33,7 @@ public class LoginPage {
     }
 
     @Step("Type into User Name Field {username}")
-    public LoginPage typeIntoUserNameField(String username){
+    public LoginPage typeIntoUserNameField(String username) {
         WaitForElement.waitUntilElementIsVisible(usernameField);
         usernameField.clear();
         usernameField.sendKeys(username);
@@ -39,12 +42,13 @@ public class LoginPage {
     }
 
     @Step("Type into Password Field {password}")
-    public LoginPage typeIntoPasswordField(String password){
+    public LoginPage typeIntoPasswordField(String password) {
         passwordField.clear();
         passwordField.sendKeys(password);
         logger.info("Typed into Password Field {}", password);
         return this;
     }
+
     @Step("Click on Login Button")
     public FooterPage clickOnLoginButton() {
         signOnButton.click();
@@ -52,20 +56,20 @@ public class LoginPage {
         return new FooterPage();
     }
 
-    @Step("Getting if Username Field is displayed")
-    public boolean isUsernameFieldDisplayed() {
+    @Step("Assert that Username Field is displayed")
+    public LoginPage assertThatUsernameFieldIsDisplayed() {
+        logger.info("Checking if Username Field is Displayed");
         WaitForElement.waitUntilElementIsVisible(usernameField);
-        boolean isDisplayed = usernameField.isDisplayed();
-        logger.info("Sign On Link is Displayed: {}", isDisplayed);
-        return isDisplayed;
+        assertThat(usernameField).isDisplayed();
+        return this;
     }
 
-    @Step("Getting warning message from Login Page")
-    public String getWarningMessage() {
+    @Step("Assert that warning message {warningMessage} is displayed")
+    public LoginPage assertThatWarningIsDisplayed(String warningMessage) {
+        logger.info("Checking if warning message {} is displayed", warningMessage);
         WaitForElement.waitUntilElementIsVisible(messageLabel);
-        String warningText = messageLabel.getText();
-        logger.info("Returned warning message was: {}", warningText);
-        return warningText;
+        AssertWebElement.assertThat(messageLabel).isDisplayed().hasText(warningMessage);
+        return this;
     }
- }
 
+}
